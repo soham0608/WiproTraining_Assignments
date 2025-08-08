@@ -1,0 +1,16 @@
+2025-08-08T12:39:00.553+05:30 ERROR 22652 --- [Logdemo] [http-nio-8080-exec-2] c.w.logdemo.controller.HomeController    : --Error--
+2025-08-08T12:39:00.556+05:30  WARN 22652 --- [Logdemo] [http-nio-8080-exec-2] c.w.logdemo.controller.HomeController    : --WARN--
+2025-08-08T12:39:46.691+05:30  INFO 22652 --- [Logdemo] [restartedMain] com.wipro.logdemo.LogdemoApplication     : Starting LogdemoApplication using Java 21.0.6 with PID 22652 (D:\CDAC\SpringBoot\Logdemo\target\classes started by SOHAM TANAVADE in D:\CDAC\SpringBoot\Logdemo)
+2025-08-08T12:39:46.694+05:30  INFO 22652 --- [Logdemo] [restartedMain] com.wipro.logdemo.LogdemoApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-08-08T12:39:47.028+05:30  INFO 22652 --- [Logdemo] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-08T12:39:47.031+05:30  INFO 22652 --- [Logdemo] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-08T12:39:47.031+05:30  INFO 22652 --- [Logdemo] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-08T12:39:47.057+05:30  INFO 22652 --- [Logdemo] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-08T12:39:47.058+05:30  INFO 22652 --- [Logdemo] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 360 ms
+2025-08-08T12:39:47.198+05:30  INFO 22652 --- [Logdemo] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-08-08T12:39:47.224+05:30  INFO 22652 --- [Logdemo] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-08T12:39:47.233+05:30  INFO 22652 --- [Logdemo] [restartedMain] com.wipro.logdemo.LogdemoApplication     : Started LogdemoApplication in 0.595 seconds (process running for 55.815)
+2025-08-08T12:39:47.236+05:30  INFO 22652 --- [Logdemo] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-08-08T14:30:57.752+05:30  INFO 22652 --- [Logdemo] [RMI TCP Connection(82)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-08-08T14:30:57.904+05:30  INFO 22652 --- [Logdemo] [RMI TCP Connection(82)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-08T14:30:57.950+05:30  INFO 22652 --- [Logdemo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
