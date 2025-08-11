@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Dashboard UI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #e6ecea;
+        }
+        .dashboard-card {
+            border-radius: 2rem;
+            background: #f7f9f8;
+            box-shadow: 0 4px 32px #bfc9c8;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+        .rounded-btn {
+            border-radius: 2rem;
+        }
+        .color-dot {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            border: 2px solid #fff;
+            box-shadow: 0 1px 4px #bbb;
+        }
+        .color-dot.blue { background: #4b7cf3; }
+        .color-dot.orange { background: #ff8c42; }
+        .color-dot.red { background: #f3425f; }
+        .color-dot.green { background: #3fd47a; }
+        .color-dot.lightblue { background: #4be0f3; }
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 4px;
+        }
+        .icon-btn {
+            background: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .search-bar {
+            border-radius: 2rem;
+            background: #fff;
+            border: none;
+            padding-left: 2.5rem;
+        }
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #bbb;
+        }
+        .product-img {
+            max-width: 100%;
+            height: 180px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+        .arrow-btn {
+            background: #fff;
+            border-radius: 50%;
+            border: none;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px #d3d3d3;
+        }
+        .social-icon {
+            font-size: 1.2rem;
+            margin-right: 10px;
+            color: #222;
+        }
+        .star {
+            color: #ffb400;
+        }
+    </style>
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div class="dashboard-card">
+        <!-- Top Bar -->
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <div class="d-flex align-items-center">
+                <img src="https://img.icons8.com/ios-filled/50/000000/n.png" alt="Logo" width="36" class="me-2">
+                <span class="fw-bold fs-4">nitec.</span>
+            </div>
+            <div class="position-relative flex-grow-1 mx-4" style="max-width: 450px;">
+                <i class="bi bi-search search-icon"></i>
+                <input type="text" class="form-control search-bar ps-5" placeholder="Search products...">
+            </div>
+            <div class="d-flex align-items-center">
+                <button class="icon-btn me-3"><i class="bi bi-bag"></i></button>
+                <span class="me-2 fw-semibold">Ryman Alex</span>
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="avatar">
+            </div>
+        </div>
+        <!-- Main Content -->
+        <div class="row g-4">
+            <!-- Left Main Section -->
+            <div class="col-lg-7">
+                <div class="bg-white rounded-4 p-4 h-100">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="small text-secondary"><i class="bi bi-music-note-beamed me-1"></i>Music is Classic</span>
+                    </div>
+                    <h1 class="fw-bold display-5 mb-2">Sequoia Inspiring Musico.</h1>
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="fs-2 fw-bold me-3" style="color:#cfd2d3;">01</span>
+                        <span class="fw-semibold">Clear Sounds</span>
+                    </div>
+                    <div class="mb-4 text-secondary">
+                        Making your dream music come true stay with Sequios Sounds!
+                    </div>
+                    <a href="#" class="btn btn-warning rounded-pill px-4 py-2 fw-bold mb-4" style="background:#e6ff3f; color:#000; border:none;">
+                        View All Products <i class="bi bi-arrow-up-right ms-2"></i>
+                    </a>
+                    <div class="mb-2">
+                        <span class="me-2">Follow us on:</span>
+                        <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-tiktok"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Product Image -->
+            <div class="col-lg-5 d-flex align-items-center justify-content-center">
+                <img src="hd.jpg" alt="Headphones" class="product-img" height="500" width="500">
+            </div>
+            <!-- Right Sidebar -->
+            <div class="col-lg-3">
+                <div class="mb-4">
+                    <div class="bg-white rounded-4 p-3 mb-3">
+                        <div class="fw-semibold mb-2">Popular Colors</div>
+                        <span class="color-dot blue"></span>
+                        <span class="color-dot orange"></span>
+                        <span class="color-dot red"></span>
+                        <span class="color-dot green"></span>
+                        <span class="color-dot lightblue"></span>
+                    </div>
+                    <div class="bg-white rounded-4 p-3 mb-3">
+                        <div class="fw-semibold mb-2">New Gen X-Bud</div>
+                        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=300&q=80" alt="X-Bud" class="img-fluid rounded-3 mb-2">
+                        <button class="arrow-btn position-absolute end-0 me-3 mt-2"><i class="bi bi-arrow-up-right"></i></button>
+                    </div>
+                    <div class="bg-white rounded-4 p-3">
+                        <div class="fw-semibold mb-2">Light Grey Surface Headphone</div>
+                        <div class="text-secondary small mb-2">Boosted with bass</div>
+                        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=300&q=80" alt="Surface Headphone" class="img-fluid rounded-3 mb-2">
+                        <button class="arrow-btn position-absolute end-0 me-3 mt-2"><i class="bi bi-arrow-up-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom Cards -->
+            <div class="col-lg-9">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="bg-white rounded-4 p-3 h-100">
+                            <div class="fw-semibold mb-1">More Products</div>
+                            <div class="text-secondary small mb-2">460 plus items.</div>
+                            <div class="d-flex align-items-center">
+                                <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Product" class="avatar me-1">
+                                <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Product" class="avatar me-1">
+                                <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="Product" class="avatar me-1">
+                                <img src="https://randomuser.me/api/portraits/men/35.jpg" alt="Product" class="avatar">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bg-white rounded-4 p-3 h-100 d-flex flex-column align-items-center justify-content-center">
+                            <div class="mb-2">
+                                <img src="https://randomuser.me/api/portraits/men/36.jpg" alt="User" class="avatar">
+                                <img src="https://randomuser.me/api/portraits/men/37.jpg" alt="User" class="avatar">
+                                <img src="https://randomuser.me/api/portraits/men/38.jpg" alt="User" class="avatar">
+                            </div>
+                            <div class="fw-bold fs-4 mb-1">5m+ Downloads</div>
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-success me-2"><i class="bi bi-star-fill star"></i> 4.6 reviews</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bg-white rounded-4 p-3 h-100">
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="badge bg-warning text-dark me-2">Popular</span>
+                                <span class="fw-semibold">Listening Has Been Released</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=50&q=80" alt="Product" class="avatar me-1">
+                                <img src="https://randomuser.me/api/portraits/men/39.jpg" alt="Product" class="avatar">
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="star me-1"><i class="bi bi-star-fill"></i></span>
+                                <span>4.7</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

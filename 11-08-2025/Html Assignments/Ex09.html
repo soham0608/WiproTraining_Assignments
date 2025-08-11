@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header, nav, aside, main, footer {
+            border: 2px solid #000;
+            margin: 5px;
+            padding: 10px;
+        }
+        article, section, figure, p {
+            border: 2px solid #000;
+            margin: 5px 0;
+            padding: 5px;
+        }
+        body {
+            display: grid;
+            grid-template-areas: 
+                "header header"
+                "nav nav"
+                "aside main"
+                "footer footer";
+            grid-template-columns: 1fr 2fr;
+            grid-template-rows: auto auto 1fr auto;
+            min-height: 90vh;
+            gap: 5px;
+        }
+        header { grid-area: header; }
+        nav { grid-area: nav; }
+        aside { grid-area: aside; }
+        main { grid-area: main; }
+        footer { grid-area: footer; }
+    </style>
+</head>
+<body>
+    <header>HEADER</header>
+    <nav>NAVIGATION</nav>
+    <aside>ASIDE TAB</aside>
+    <main>
+        MAIN
+        <article>
+            ARTICLE
+            <figure>IMAGE</figure>
+            <p>Paragraph</p>
+        </article>
+        <section>SECTION</section>
+    </main>
+    <footer>FOOTER</footer>
+</body>
+</html>
