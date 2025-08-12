@@ -1,0 +1,39 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selector Demo</title>
+    <style>
+      * {
+        color: blue;
+        font-family: Arial, sans-serif;
+      }
+      h1,
+      p {
+        background-color: #e0e0e0;
+        padding: 10px;
+      }
+      .highlight {
+        color: orange;
+        font-weight: bold;
+      }
+      #special {
+        color: green;
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Heading 1</h1>
+
+    <p>This is a paragraph.</p>
+
+    <p class="highlight">This paragraph uses the <b>.highlight</b> class.</p>
+
+    <p id="special" class="highlight">
+      This paragraph uses both <b>#special</b> id and <b>.highlight</b> class.
+    </p>
+
+    <div>Just a div element.</div>
+  </body>
+</html>
