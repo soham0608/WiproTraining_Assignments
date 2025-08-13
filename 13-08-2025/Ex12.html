@@ -1,0 +1,20 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Palindrome Checker</title>
+  </head>
+  <body>
+    <script>
+      function isPalindrome(str) {
+        const cleaned = str.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+        return cleaned === cleaned.split("").reverse().join("");
+      }
+
+      const testString = "Madam";
+      document.write(
+        testString + " is palindrome? " + isPalindrome(testString)
+      );
+    </script>
+  </body>
+</html>

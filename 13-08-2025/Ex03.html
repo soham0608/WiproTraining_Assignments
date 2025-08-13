@@ -1,0 +1,17 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="myInput" placeholder="Enter text here" />
+    <button onclick="printLength()">Show Length</button>
+    <script>
+      function printLength() {
+        var text = document.getElementById("myInput").value;
+        alert("Length: " + text.length);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const persons = [
+        { name: "Soham", age: 22, city: "Pune" },
+        { name: "Rohit", age: 17, city: "Kolhapur" },
+        { name: "Prathamesh", age: 19, city: "Solapur" },
+        { name: "Kshitij", age: 15, city: "Nagar" },
+        { name: "Harash", age: 25, city: "Baramati" },
+      ];
+
+      const eligibleToVote = persons.filter((person) => person.age >= 18);
+
+      console.log("People eligible to vote:");
+      console.log(eligibleToVote);
+      const updatedPersons = persons.map((person) => ({
+        ...person,
+        status: person.age >= 18 ? "adult" : "minor",
+      }));
+
+      console.log(updatedPersons);
+    </script>
+  </body>
+</html>

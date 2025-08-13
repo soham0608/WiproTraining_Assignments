@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Manager Salary Total</title>
+  </head>
+  <body>
+    <script>
+      const employees = [
+        { name: "Soham", role: "Manager", empId: 101, salary: 80000 },
+        { name: "Pratham", role: "Developer", empId: 102, salary: 60000 },
+        { name: "ROhit", role: "Manager", empId: 103, salary: 85000 },
+        { name: "Kshitij", role: "QA", empId: 104, salary: 50000 },
+        { name: "Harsh", role: "Manager", empId: 105, salary: 90000 },
+      ];
+
+      const totalManagerSalary = employees
+        .filter((emp) => emp.role === "Manager")
+        .reduce((sum, emp) => sum + emp.salary, 0);
+
+      console.log("Total salary drawn by all managers:", totalManagerSalary);
+    </script>
+  </body>
+</html>

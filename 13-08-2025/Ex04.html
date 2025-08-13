@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ex04</title>
+  </head>
+  <body>
+    <input
+      type="text"
+      id="myInput"
+      maxlength="50"
+      placeholder="Enter text here"
+    />
+    <br />
+    <label id="charLabel">50 characters remaining</label>
+    <script>
+      const input = document.getElementById("myInput");
+      const label = document.getElementById("charLabel");
+      input.addEventListener("input", function () {
+        const remaining = 50 - input.value.length;
+        label.textContent = remaining + " characters remaining";
+      });
+    </script>
+  </body>
+</html>

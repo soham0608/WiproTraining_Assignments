@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Var, Let, Const Scope Example</title>
+  </head>
+  <body>
+    <script>
+      function varScope() {
+        if (true) {
+          var x = 10;
+        }
+        console.log("var x:", x);
+      }
+      varScope();
+
+      function letScope() {
+        if (true) {
+          let y = 20;
+          console.log("let y inside block:", y);
+        }
+      }
+      letScope();
+
+      function constScope() {
+        if (true) {
+          const z = 30;
+          console.log("const z inside block:", z);
+        }
+      }
+      constScope();
+    </script>
+  </body>
+</html>

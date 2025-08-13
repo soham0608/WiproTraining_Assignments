@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simple Calculator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+        background: #f4f8fb;
+      }
+      #calc-container {
+        max-width: 340px;
+        margin: 60px auto;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        padding: 28px 24px 18px 24px;
+      }
+      h2 {
+        text-align: center;
+        color: #007bff;
+        margin-bottom: 18px;
+      }
+      input[type="number"] {
+        width: 120px;
+        padding: 8px;
+        margin: 8px 8px 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1em;
+      }
+      .calc-btn {
+        padding: 8px 16px;
+        margin: 8px 6px 8px 0;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1em;
+      }
+      .calc-btn:active {
+        background: #0056b3;
+      }
+      #result {
+        margin-top: 18px;
+        font-size: 1.1em;
+        color: #333;
+        text-align: center;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="calc-container">
+      <h2>Simple Calculator</h2>
+      <input type="number" id="num1" placeholder="First number" />
+      <input type="number" id="num2" placeholder="Second number" /><br />
+      <button class="calc-btn" onclick="calculate('add')">Add</button>
+      <button class="calc-btn" onclick="calculate('subtract')">Subtract</button>
+      <button class="calc-btn" onclick="calculate('multiply')">Multiply</button>
+      <button class="calc-btn" onclick="calculate('divide')">Divide</button>
+      <div id="result"></div>
+    </div>
+    <script>
+      function calculate(op) {
+        const n1 = parseFloat(document.getElementById("num1").value);
+        const n2 = parseFloat(document.getElementById("num2").value);
+        let res = "";
+        if (isNaN(n1) || isNaN(n2)) {
+          res = "Please enter both numbers.";
+        } else {
+          switch (op) {
+            case "add":
+              res = "Result: " + (n1 + n2);
+              break;
+            case "subtract":
+              res = "Result: " + (n1 - n2);
+              break;
+            case "multiply":
+              res = "Result: " + n1 * n2;
+              break;
+            case "divide":
+              if (n2 === 0) {
+                res = "Cannot divide by zero.";
+              } else {
+                res = "Result: " + n1 / n2;
+              }
+              break;
+          }
+        }
+        document.getElementById("result").textContent = res;
+      }
+    </script>
+  </body>
+</html>

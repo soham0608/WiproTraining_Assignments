@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ordered City Dropdown</title>
+  </head>
+  <body>
+    <button onclick="populateDropdown()">Show Cities</button>
+    <select id="cityDropdown"></select>
+    <script>
+      const cities = [
+        "Mumbai",
+        "Delhi",
+        "Chennai",
+        "Bangalore",
+        "Kolkata",
+        "Pune",
+        "Hyderabad",
+      ];
+
+      function populateDropdown() {
+        const dropdown = document.getElementById("cityDropdown");
+        dropdown.innerHTML = "";
+        const orderedCities = [...cities].sort();
+
+        orderedCities.forEach((city) => {
+          const option = document.createElement("option");
+          option.value = city;
+          option.textContent = city;
+          dropdown.appendChild(option);
+        });
+      }
+    </script>
+  </body>
+</html>

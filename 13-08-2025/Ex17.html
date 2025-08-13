@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quiz App</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+        margin: 0;
+        min-height: 100vh;
+      }
+      #quiz-container {
+        max-width: 440px;
+        margin: 60px auto;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        padding: 32px 28px 24px 28px;
+      }
+      h2 {
+        text-align: center;
+        color: #007bff;
+        margin-bottom: 24px;
+      }
+      #question {
+        font-size: 1.2em;
+        margin-bottom: 18px;
+        color: #333;
+        font-weight: 500;
+      }
+      .option-btn {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 12px;
+        border: 2px solid #007bff;
+        border-radius: 8px;
+        background: #f0f8ff;
+        cursor: pointer;
+        text-align: left;
+        font-size: 1em;
+        transition: background 0.2s, border-color 0.2s;
+      }
+      .option-btn.selected {
+        background: #007bff;
+        color: #fff;
+        border-color: #0056b3;
+      }
+      .option-btn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+      .option-btn:active {
+        background: #cce5ff;
+      }
+      #feedback {
+        margin: 16px 0 8px 0;
+        font-weight: bold;
+        font-size: 1.1em;
+        text-align: center;
+      }
+      #score {
+        margin-top: 18px;
+        text-align: right;
+        color: #007bff;
+        font-weight: 500;
+      }
+      #nextBtn,
+      #restartBtn {
+        padding: 10px 22px;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1em;
+        margin: 12px auto 0 auto;
+        display: block;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transition: background 0.2s;
+      }
+      #nextBtn:active,
+      #restartBtn:active {
+        background: #0056b3;
+      }
+      #restartBtn {
+        background: #28a745;
+      }
+      #restartBtn:active {
+        background: #1e7e34;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="quiz-container">
+      <h2>Quiz App</h2>
+      <div id="question"></div>
+      <div id="options"></div>
+      <div id="feedback"></div>
+      <button id="nextBtn" onclick="nextQuestion()" disabled>
+        Next Question
+      </button>
+      <button id="restartBtn" onclick="restartQuiz()" style="display: none">
+        Restart Quiz
+      </button>
+      <div id="score"></div>
+    </div>
+    <script>
+      const questions = [
+        {
+          q: "What is the capital of France?",
+          options: ["Berlin", "Paris", "Rome", "Madrid"],
+          answer: 1,
+        },
+        {
+          q: "Which planet is known as the Red Planet?",
+          options: ["Earth", "Venus", "Mars", "Jupiter"],
+          answer: 2,
+        },
+        {
+          q: "Who wrote 'Hamlet'?",
+          options: [
+            "Charles Dickens",
+            "William Shakespeare",
+            "Mark Twain",
+            "Jane Austen",
+          ],
+          answer: 1,
+        },
+        {
+          q: "Which is the largest ocean on Earth?",
+          options: [
+            "Atlantic Ocean",
+            "Indian Ocean",
+            "Pacific Ocean",
+            "Arctic Ocean",
+          ],
+          answer: 2,
+        },
+        {
+          q: "What is the boiling point of water?",
+          options: ["100°C", "0°C", "50°C", "212°C"],
+          answer: 0,
+        },
+        {
+          q: "Which country is known as the Land of the Rising Sun?",
+          options: ["China", "Japan", "Thailand", "South Korea"],
+          answer: 1,
+        },
+        {
+          q: "What is the chemical symbol for gold?",
+          options: ["Au", "Ag", "Gd", "Go"],
+          answer: 0,
+        },
+        {
+          q: "Who painted the Mona Lisa?",
+          options: [
+            "Vincent van Gogh",
+            "Leonardo da Vinci",
+            "Pablo Picasso",
+            "Michelangelo",
+          ],
+          answer: 1,
+        },
+      ];
+      let current = 0;
+      let score = 0;
+      let selectedOption = null;
+
+      function showQuestion() {
+        document.getElementById("question").textContent = questions[current].q;
+        const opts = document.getElementById("options");
+        opts.innerHTML = "";
+        selectedOption = null;
+        questions[current].options.forEach((opt, i) => {
+          const btn = document.createElement("button");
+          btn.textContent = opt;
+          btn.className = "option-btn";
+          btn.onclick = function () {
+            selectOption(i, btn);
+          };
+          btn.disabled = false;
+          opts.appendChild(btn);
+        });
+        document.getElementById("feedback").textContent = "";
+        document.getElementById("score").textContent = "Score: " + score;
+        document.getElementById("nextBtn").style.display = "block";
+        document.getElementById("nextBtn").disabled = true;
+        document.getElementById("restartBtn").style.display = "none";
+      }
+
+      function selectOption(i, btn) {
+        Array.from(document.getElementsByClassName("option-btn")).forEach(
+          (b) => {
+            b.classList.remove("selected");
+          }
+        );
+        btn.classList.add("selected");
+        selectedOption = i;
+        document.getElementById("nextBtn").disabled = false;
+      }
+
+      function nextQuestion() {
+        if (selectedOption === null) return;
+        const correct = questions[current].answer;
+        if (selectedOption === correct) {
+          document.getElementById("feedback").textContent = "Correct!";
+          score++;
+        } else {
+          document.getElementById("feedback").textContent = "Wrong!";
+        }
+        Array.from(document.getElementsByClassName("option-btn")).forEach(
+          (btn) => (btn.disabled = true)
+        );
+        document.getElementById("score").textContent = "Score: " + score;
+        document.getElementById("nextBtn").disabled = true;
+        setTimeout(() => {
+          current++;
+          if (current < questions.length) {
+            showQuestion();
+          } else {
+            document.getElementById("question").textContent = "Quiz Finished!";
+            document.getElementById("options").innerHTML = "";
+            document.getElementById("feedback").textContent = "";
+            document.getElementById("nextBtn").style.display = "none";
+            document.getElementById("restartBtn").style.display = "block";
+            document.getElementById("score").textContent =
+              "Final Score: " + score + "/" + questions.length;
+          }
+        }, 1000);
+      }
+
+      function restartQuiz() {
+        current = 0;
+        score = 0;
+        showQuestion();
+      }
+
+      showQuestion();
+    </script>
+  </body>
+</html>
