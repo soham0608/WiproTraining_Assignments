@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Example</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      input,
+      button {
+        margin: 5px 0;
+        padding: 8px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Login Page</h2>
+    <label for="userId">User ID:</label>
+    <input type="text" id="userId" placeholder="Enter User ID" /><br />
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" placeholder="Enter Password" /><br />
+
+    <button id="loginBtn">Login</button>
+    <button id="logoutBtn">Logout</button>
+
+    <p id="status"></p>
+
+    <script>
+      const userIdInput = document.getElementById("userId");
+      const passwordInput = document.getElementById("password");
+      const statusEl = document.getElementById("status");
+
+      if (localStorage.getItem("userId")) {
+        statusEl.textContent = `Logged in as: ${localStorage.getItem(
+          "userId"
+        )}`;
+      } else {
+        statusEl.textContent = "Not logged in";
+      }
+
+      document.getElementById("loginBtn").addEventListener("click", () => {
+        const userId = userIdInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        if (!userId || !password) {
+          alert("Please enter both User ID and Password");
+          return;
+        }
+
+        localStorage.setItem("userId", userId);
+        statusEl.textContent = `Logged in as: ${userId}`;
+        alert("Login successful!");
+      });
+
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        localStorage.removeItem("userId");
+        statusEl.textContent = "Not logged in";
+        alert("Logged out successfully!");
+      });
+    </script>
+  </body>
+</html>
