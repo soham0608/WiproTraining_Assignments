@@ -1,0 +1,29 @@
+.book-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+.book-card {
+  flex: 0 0 calc(20% - 16px); /* 5 per row */
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+.book-card img {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+.book-card h5 {
+  margin: 8px 0 4px 0;
+  font-size: 1rem;
+}
+.book-card p {
+  font-size: 0.9rem;
+  color: #555;
+}

@@ -1,0 +1,7 @@
+<input type="text" [(ngModel)]="message" class="form-control mb-3" />
+<button class="btn btn-primary" (click)="printMessage()">Print Message</button>
+<h2>{{ message }}</h2>
+
+<ul>
+  <li *ngFor="let name of names">{{ name }}</li>
+</ul>

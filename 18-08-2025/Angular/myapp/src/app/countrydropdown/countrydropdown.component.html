@@ -1,0 +1,6 @@
+<button class="btn btn-primary mb-3" (click)="loadCountries()">Load</button>
+<select class="form-select">
+  <option *ngFor="let country of loadedCountries" [value]="country">
+    {{ country }}
+  </option>
+</select>
