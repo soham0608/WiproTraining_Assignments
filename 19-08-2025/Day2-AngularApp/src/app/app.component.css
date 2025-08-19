@@ -1,0 +1,11 @@
+.red-box {
+  color: white;
+  background-color: red;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.blue-border {
+  border: 2px solid blue;
+  padding: 10px;
+}

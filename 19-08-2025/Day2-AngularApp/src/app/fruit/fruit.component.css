@@ -1,0 +1,36 @@
+.fruit-card {
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 12px;
+  text-align: center;
+  width: 180px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  background: linear-gradient(135deg, #f9f9f9, #fff);
+}
+
+.fruit-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.fruit-card h3 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.fruit-card p {
+  font-size: 1rem;
+  color: #666;
+  margin: 4px 0;
+}
+
+.fruit-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}

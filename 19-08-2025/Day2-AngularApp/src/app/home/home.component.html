@@ -1,0 +1,26 @@
+<!-- Example 1: Fixed inline style using ngStyle
+<p [ngStyle]="{ color: color1, 'font-size': fontSize1 }">
+  This is styled using ngStyle with variables.
+</p>
+
+<-- Example 2: Conditional style based on flag 
+<p
+  [ngStyle]="{
+    color: flag1 ? 'blue' : 'red',
+    'font-weight': flag1 ? 'bold' : 'normal'
+  }"
+>
+  This is conditionally styled with ngStyle.
+</p> -->
+
+<!-- <h2>Fruit List</h2>
+
+<div *ngFor="let fruit of fruits">
+  <app-fruit [name]="fruit.name" [color]="fruit.color"></app-fruit>
+</div> -->
+
+<h2>Fruit List</h2>
+
+<div *ngFor="let fruit of fruits">
+  <app-fruit [fruit]="fruit" (removeClick)="removeFruit($event)"></app-fruit>
+</div>
