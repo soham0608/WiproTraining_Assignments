@@ -1,0 +1,72 @@
+<h2>Movie Management</h2>
+
+<form (ngSubmit)="addMovie()" #movieForm="ngForm" class="movie-form">
+  <div class="form-group">
+    <label for="movieId">Movie ID:</label>
+    <input
+      type="number"
+      id="movieId"
+      [(ngModel)]="newMovie.movieId"
+      name="movieId"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="movieName">Movie Name:</label>
+    <input
+      type="text"
+      id="movieName"
+      [(ngModel)]="newMovie.movieName"
+      name="movieName"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="language">Language:</label>
+    <input
+      type="text"
+      id="language"
+      [(ngModel)]="newMovie.language"
+      name="language"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="imdbRating">IMDB Rating:</label>
+    <input
+      type="number"
+      id="imdbRating"
+      [(ngModel)]="newMovie.imdbRating"
+      name="imdbRating"
+      required
+    />
+  </div>
+
+  <button type="submit">{{ editMode ? "Update Movie" : "Add Movie" }}</button>
+</form>
+
+<hr />
+
+<h3>Movie List</h3>
+<table class="movie-table">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Language</th>
+    <th>Rating</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let movie of movies">
+    <td>{{ movie.movieId }}</td>
+    <td>{{ movie.movieName }}</td>
+    <td>{{ movie.language }}</td>
+    <td>{{ movie.imdbRating }}</td>
+    <td>
+      <button (click)="editMovie(movie)">Edit</button>
+      <button (click)="deleteMovie(movie.movieId)">Delete</button>
+    </td>
+  </tr>
+</table>

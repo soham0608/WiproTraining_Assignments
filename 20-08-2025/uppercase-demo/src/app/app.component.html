@@ -1,0 +1,31 @@
+<div style="text-align: center; margin-top: 50px">
+  <h2>Uppercase Pipe Demo</h2>
+
+  <input type="text" [(ngModel)]="inputText" placeholder="Type here..." />
+
+  <p>Transformed: {{ inputText | uppercaseInstant }}</p>
+  <hr />
+
+  <h2>Calendar Control - Ex2</h2>
+
+  <!-- Ex2: Calendar control -->
+  <input type="date" [(ngModel)]="selectedDate" />
+
+  <!-- Show date in short format -->
+  <p *ngIf="selectedDate">Selected Date: {{ selectedDate | date : "short" }}</p>
+
+  <hr />
+
+  <h2>Assignment - Ex3</h2>
+  <input type="number" [(ngModel)]="celsius" placeholder="Enter °C" />
+  <p *ngIf="celsius !== undefined">
+    Converted: {{ celsius | celsiusToFahrenheit }}
+  </p>
+
+  <hr />
+
+  <h2>Assignment - Ex4</h2>
+  <p appHighlightStrikethru>
+    This text is highlighted in yellow and struck through.
+  </p>
+</div>
