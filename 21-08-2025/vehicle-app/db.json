@@ -1,0 +1,46 @@
+{
+  "vehicles": [
+    {
+      "id": "1",
+      "make": "Toyota",
+      "fuelType": "Petrol",
+      "model": "Fortuner",
+      "price": 5200000
+    },
+    {
+      "make": "Honda",
+      "fuelType": "Petrol",
+      "model": "Civic",
+      "price": 900000,
+      "id": "2"
+    },
+    {
+      "make": "Ford",
+      "fuelType": "Disel",
+      "model": "Endeavour",
+      "price": 4500000,
+      "id": "3"
+    },
+    {
+      "id": "5",
+      "make": "Suzuki",
+      "fuelType": "Petrol",
+      "model": "Swift",
+      "price": 700000
+    },
+    {
+      "id": "4",
+      "make": "Tata",
+      "fuelType": "Electric",
+      "model": "Curv",
+      "price": 2500000
+    },
+    {
+      "id": "72bf",
+      "make": "Hyundai",
+      "fuelType": "Disel",
+      "model": "Creta",
+      "price": 2700000
+    }
+  ]
+}
