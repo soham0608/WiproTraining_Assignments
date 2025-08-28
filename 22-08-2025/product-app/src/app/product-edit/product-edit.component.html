@@ -1,0 +1,13 @@
+<h2>Edit Product</h2>
+<form (ngSubmit)="onSubmit()" #editForm="ngForm">
+  <label for="name">Name:</label>
+  <input id="name" name="name" [(ngModel)]="product.name" required /><br />
+
+  <label for="category">Category:</label>
+  <input id="category" name="category" [(ngModel)]="product.category" required /><br />
+
+  <label for="price">Price:</label>
+  <input id="price" type="number" name="price" [(ngModel)]="product.price" required /><br />
+
+  <button type="submit" [disabled]="!editForm.form.valid">Update</button>
+</form>

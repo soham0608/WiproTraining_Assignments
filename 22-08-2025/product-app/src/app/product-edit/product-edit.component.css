@@ -1,0 +1,25 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+label {
+  margin-top: 8px;
+}
+input {
+  padding: 6px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+button {
+  margin-top: 12px;
+  padding: 8px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+button:disabled {
+  background-color: #aaa;
+}

@@ -1,0 +1,39 @@
+<div class="stepper">
+  <!-- Step 1 -->
+  <div *ngIf="step === 1">
+    <h3>Step 1: Enter Name</h3>
+    <input
+      type="text"
+      [(ngModel)]="formData.name"
+      placeholder="Enter your name"
+    />
+    <br />
+    <button (click)="nextStep()">Next</button>
+  </div>
+
+  <!-- Step 2 -->
+  <div *ngIf="step === 2">
+    <h3>Step 2: Enter Age</h3>
+    <input
+      type="number"
+      [(ngModel)]="formData.age"
+      placeholder="Enter your age"
+    />
+    <br />
+    <button (click)="prevStep()">Back</button>
+    <button (click)="nextStep()">Next</button>
+  </div>
+
+  <!-- Step 3 -->
+  <div *ngIf="step === 3">
+    <h3>Step 3: Enter Email</h3>
+    <input
+      type="email"
+      [(ngModel)]="formData.email"
+      placeholder="Enter your email"
+    />
+    <br />
+    <button (click)="prevStep()">Back</button>
+    <button (click)="submitForm()">Submit</button>
+  </div>
+</div>

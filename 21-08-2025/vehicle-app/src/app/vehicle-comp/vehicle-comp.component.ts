@@ -37,7 +37,7 @@ export class VehicleCompComponent implements OnInit {
 
   editVehicle(vehicle: Vehicle): void {
     this.editMode = true;
-    this.newVehicle = { ...vehicle }; // copy for editing
+    this.newVehicle = { ...vehicle }; 
   }
 
   updateVehicle(): void {

@@ -1,0 +1,62 @@
+<h2>Registration Form</h2>
+
+<form [formGroup]="regForm" (ngSubmit)="submit()">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" placeholder="Enter your name" />
+    <mat-error *ngIf="regForm.get('name')?.hasError('required')"
+      >Name is required</mat-error
+    >
+    <mat-error *ngIf="regForm.get('name')?.hasError('minlength')"
+      >Min 2 characters</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" placeholder="Enter your email" />
+    <mat-error *ngIf="regForm.get('email')?.hasError('required')"
+      >Email is required</mat-error
+    >
+    <mat-error *ngIf="regForm.get('email')?.hasError('email')"
+      >Invalid email format</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Date of Birth</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      formControlName="dob"
+      placeholder="Choose a date"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="regForm.get('dob')?.hasError('required')"
+      >Date of Birth is required</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Subject of Study</mat-label>
+    <mat-select formControlName="subject">
+      <mat-option *ngFor="let sub of subjects" [value]="sub">{{
+        sub
+      }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="regForm.get('subject')?.hasError('required')"
+      >Subject is required</mat-error
+    >
+  </mat-form-field>
+
+  <!-- Submit Button -->
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="!regForm.valid"
+  >
+    Register
+  </button>
+</form>
