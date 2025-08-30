@@ -9,7 +9,7 @@ import com.wipro.usermanagement.dto.RoleDTO;
 import com.wipro.usermanagement.service.RoleService;
 
 @RestController
-@RequestMapping("/roles")
+@RequestMapping("/role")
 public class RoleController {
 
     private final RoleService roleService;

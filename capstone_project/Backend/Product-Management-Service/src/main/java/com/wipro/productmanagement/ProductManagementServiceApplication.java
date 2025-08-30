@@ -1,13 +1,13 @@
-package com.wipro.usermanagement;
+package com.wipro.productmanagement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = "com.wipro")
-public class UserManagementServiceApplication {
+public class ProductManagementServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UserManagementServiceApplication.class, args);
+		SpringApplication.run(ProductManagementServiceApplication.class, args);
 	}
 
 }
