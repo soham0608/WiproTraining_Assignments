@@ -4,24 +4,17 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Data
-public class CartItemDTO {
-    private Integer cart_id;
-    private Integer user_id;
+public class OrderItemDTO {
+    private Integer id;
     private Integer product_id;
     private String product_name;
-    private Integer quantity;
     private BigDecimal price;
-	public Integer getCart_id() {
-		return cart_id;
+    private Integer quantity;
+	public Integer getId() {
+		return id;
 	}
-	public void setCart_id(Integer cart_id) {
-		this.cart_id = cart_id;
-	}
-	public Integer getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public Integer getProduct_id() {
 		return product_id;
@@ -35,16 +28,16 @@ public class CartItemDTO {
 	public void setProduct_name(String product_name) {
 		this.product_name = product_name;
 	}
-	public Integer getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
 	public BigDecimal getPrice() {
 		return price;
 	}
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+	public Integer getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 }

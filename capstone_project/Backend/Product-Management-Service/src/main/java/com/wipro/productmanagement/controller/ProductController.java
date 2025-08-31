@@ -1,50 +1,37 @@
 package com.wipro.productmanagement.controller;
 
-import com.wipro.productmanagement.dto.ProductDTO;
 import com.wipro.productmanagement.service.ProductService;
-import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
-import java.util.List;
-
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
 public class ProductController {
 
-    private final ProductService service;
+    private final ProductService productService;
 
-    public ProductController(ProductService service) {
-        this.service = service;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
-    @PostMapping
-    public ResponseEntity<ProductDTO> create(@Valid @RequestBody ProductDTO dto) {
-        ProductDTO saved = service.create(dto);
-        return ResponseEntity
-                .created(URI.create("/product/" + saved.getPid()))
-                .body(saved);
+    @GetMapping("/check/{productId}/{quantity}")
+    public ResponseEntity<Boolean> checkAvailability(@PathVariable Integer productId,
+                                                     @PathVariable Integer quantity) {
+        boolean available = productService.checkAvailability(productId, quantity);
+        return ResponseEntity.ok(available);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ProductDTO> update(@PathVariable Integer id, @Valid @RequestBody ProductDTO dto) {
-        return ResponseEntity.ok(service.update(id, dto));
+    @PutMapping("/reduce/{productId}/{quantity}")
+    public ResponseEntity<String> reduceQuantity(@PathVariable Integer productId,
+                                                 @PathVariable Integer quantity) {
+        productService.reduceQuantity(productId, quantity);
+        return ResponseEntity.ok("Quantity reduced successfully");
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id) {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping
-    public ResponseEntity<List<ProductDTO>> getAll() {
-        return ResponseEntity.ok(service.getAll());
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<ProductDTO> getById(@PathVariable Integer id) {
-        return ResponseEntity.ok(service.getById(id));
+    @PutMapping("/increase/{productId}/{quantity}")
+    public ResponseEntity<String> increaseQuantity(@PathVariable Integer productId,
+                                                   @PathVariable Integer quantity) {
+        productService.increaseQuantity(productId, quantity);
+        return ResponseEntity.ok("Quantity increased successfully");
     }
 }

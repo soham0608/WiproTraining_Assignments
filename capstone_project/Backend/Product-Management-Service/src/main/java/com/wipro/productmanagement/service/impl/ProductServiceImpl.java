@@ -66,6 +66,35 @@ public class ProductServiceImpl implements ProductService {
         return repo.findAll().stream().map(this::toDTO).collect(Collectors.toList());
     }
 
+    // ------------------- New methods -------------------
+    @Override
+    public boolean checkAvailability(Integer productId, Integer quantity) {
+        Product product = repo.findById(productId)
+                .orElseThrow(() -> new NotFoundException("Product not found with id: " + productId));
+        return product.getQuantity() >= quantity;
+    }
+
+    @Override
+    public void reduceQuantity(Integer productId, Integer quantity) {
+        Product product = repo.findById(productId)
+                .orElseThrow(() -> new NotFoundException("Product not found with id: " + productId));
+
+        if (product.getQuantity() < quantity) {
+            throw new IllegalArgumentException("Insufficient quantity for product id: " + productId);
+        }
+        product.setQuantity(product.getQuantity() - quantity);
+        repo.save(product);
+    }
+
+    @Override
+    public void increaseQuantity(Integer productId, Integer quantity) {
+        Product product = repo.findById(productId)
+                .orElseThrow(() -> new NotFoundException("Product not found with id: " + productId));
+        product.setQuantity(product.getQuantity() + quantity);
+        repo.save(product);
+    }
+
+    // ------------------- Helper methods -------------------
     private ProductDTO toDTO(Product p) {
         ProductDTO dto = new ProductDTO();
         dto.setPid(p.getPid());

@@ -4,7 +4,7 @@ import com.wipro.productmanagement.dto.ProductDTO;
 import java.util.List;
 
 public interface ProductService {
-	
+    
     ProductDTO create(ProductDTO dto);
     
     ProductDTO update(Integer id, ProductDTO dto);
@@ -14,4 +14,9 @@ public interface ProductService {
     ProductDTO getById(Integer id);
     
     List<ProductDTO> getAll();
+
+    // New methods
+    boolean checkAvailability(Integer productId, Integer quantity);
+    void reduceQuantity(Integer productId, Integer quantity);
+    void increaseQuantity(Integer productId, Integer quantity);
 }
