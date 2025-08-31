@@ -54,11 +54,11 @@ public class ProductDTO {
 		this.description = description;
 	}
 
-	public BigDecimal  getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(BigDecimal  price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 
@@ -70,5 +70,18 @@ public class ProductDTO {
 		this.quantity = quantity;
 	}
 
-    
+	public ProductDTO(Integer pid,
+			@NotBlank(message = "product_name is required") @Size(max = 100, message = "product_name must be <= 100 chars") String productName,
+			@Size(max = 500, message = "description must be <= 500 chars") String description,
+			@NotNull(message = "price is required") @DecimalMin(value = "0.0", inclusive = false, message = "price must be > 0") BigDecimal price,
+			@NotNull(message = "quantity is required") @Min(value = 0, message = "quantity must be >= 0") Integer quantity) {
+		super();
+		this.pid = pid;
+		this.productName = productName;
+		this.description = description;
+		this.price = price;
+		this.quantity = quantity;
+	}
+	
+	
 }

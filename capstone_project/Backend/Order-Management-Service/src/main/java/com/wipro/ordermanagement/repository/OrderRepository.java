@@ -2,8 +2,12 @@ package com.wipro.ordermanagement.repository;
 
 import com.wipro.ordermanagement.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
+@Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
-    List<Order> findByUser_id(Integer user_id);
+    List<Order> findByUserId(Integer userId);
 }
+

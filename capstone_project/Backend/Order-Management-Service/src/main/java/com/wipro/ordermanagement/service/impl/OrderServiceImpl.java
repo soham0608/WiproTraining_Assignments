@@ -6,15 +6,15 @@ import com.wipro.ordermanagement.dto.OrderItemDTO;
 import com.wipro.ordermanagement.entity.CartItem;
 import com.wipro.ordermanagement.entity.Order;
 import com.wipro.ordermanagement.entity.OrderItem;
-import com.wipro.ordermanagement.kafka.OrderCreatedEvent;
 import com.wipro.ordermanagement.repository.CartItemRepository;
 import com.wipro.ordermanagement.repository.OrderItemRepository;
 import com.wipro.ordermanagement.repository.OrderRepository;
 import com.wipro.ordermanagement.service.OrderService;
 import jakarta.ws.rs.NotFoundException;
-import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,31 +26,36 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
     private final CartItemRepository cartItemRepository;
-    private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final RestTemplate restTemplate;
+
+    @Value("${product.service.url}")
+    private String productServiceUrl; // e.g. http://localhost:8082/products
 
     public OrderServiceImpl(OrderRepository orderRepository,
                             OrderItemRepository orderItemRepository,
                             CartItemRepository cartItemRepository,
-                            KafkaTemplate<String, Object> kafkaTemplate) {
+                            RestTemplate restTemplate) {
         this.orderRepository = orderRepository;
         this.orderItemRepository = orderItemRepository;
         this.cartItemRepository = cartItemRepository;
-        this.kafkaTemplate = kafkaTemplate;
+        this.restTemplate = restTemplate;
     }
 
     @Override
     public OrderDTO createOrder(Integer userId) {
-        List<CartItem> cartItems = cartItemRepository.findByUser_id(userId);
+        List<CartItem> cartItems = cartItemRepository.findByUserId(userId);
         if (cartItems.isEmpty()) throw new NotFoundException("Cart is empty for user " + userId);
 
+        // 1. Create the order
         Order order = new Order();
         order.setUser_id(userId);
         order.setStatus(Order.Status.CREATED);
         Order savedOrder = orderRepository.save(order);
 
+        // 2. Convert cart items -> order items
         List<OrderItem> orderItems = cartItems.stream().map(c -> {
             OrderItem item = new OrderItem();
-            item.setOrder(savedOrder); 
+            item.setOrder(savedOrder);
             item.setProduct_id(c.getProduct_id());
             item.setProduct_name(c.getProduct_name());
             item.setPrice(c.getPrice());
@@ -59,22 +64,15 @@ public class OrderServiceImpl implements OrderService {
         }).collect(Collectors.toList());
 
         order.setOrderItems(orderItems);
+
+        // 3. Clear the cart
         cartItemRepository.deleteAll(cartItems);
 
-        // Kafka publish
-        OrderCreatedEvent event = new OrderCreatedEvent();
-        event.setOrder_id(order.getOid());
-        event.setUser_id(userId);
-        event.setItems(orderItems.stream().map(i -> {
-            OrderCreatedEvent.OrderItemPayload p = new OrderCreatedEvent.OrderItemPayload();
-            p.setProduct_id(i.getProduct_id());
-            p.setProduct_name(i.getProduct_name());
-            p.setQuantity(i.getQuantity());
-            p.setPrice(i.getPrice().doubleValue());
-            return p;
-        }).collect(Collectors.toList()));
-
-        kafkaTemplate.send("order-topic", event);
+        // 4. Call Product Service REST API to reduce stock
+        orderItems.forEach(item -> {
+            String url = productServiceUrl + "/reduce/" + item.getProduct_id() + "/" + item.getQuantity();
+            restTemplate.put(url, null);
+        });
 
         return mapToDTO(order);
     }
@@ -85,6 +83,12 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(() -> new NotFoundException("Order not found: " + orderId));
         order.setStatus(Order.Status.CANCELLED);
         order = orderRepository.save(order);
+
+        // order.getOrderItems().forEach(item -> {
+        //     String url = productServiceUrl + "/increase/" + item.getProduct_id() + "/" + item.getQuantity();
+        //     restTemplate.put(url, null);
+        // });
+
         return mapToDTO(order);
     }
 
@@ -95,7 +99,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderDTO> getOrdersByUser(Integer userId) {
-        return orderRepository.findByUser_id(userId).stream().map(this::mapToDTO).collect(Collectors.toList());
+        return orderRepository.findByUserId(userId).stream().map(this::mapToDTO).collect(Collectors.toList());
     }
 
     @Override
@@ -131,9 +135,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<CartItemDTO> getCartItems(Integer userId) {
-        return cartItemRepository.findByUser_id(userId).stream().map(this::mapToCartDTO).collect(Collectors.toList());
+        return cartItemRepository.findByUserId(userId).stream().map(this::mapToCartDTO).collect(Collectors.toList());
     }
 
+    // 🔹 Utility mappers
     private OrderDTO mapToDTO(Order order) {
         OrderDTO dto = new OrderDTO();
         dto.setOid(order.getOid());

@@ -1,73 +1,66 @@
 {
   "info": {
+    "_postman_id": "user-management-api",
     "name": "User Management API",
-    "_postman_id": "12345-67890-abcdef-12345",
-    "description": "Postman Collection for User & Role CRUD operations",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
+    {
+      "name": "Create User",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"kshitij\",\n  \"email\": \"ksh@example.com\",\n  \"password\": \"kshitij123\",\n  \"name\": \"Kshitij More\",\n  \"address\": \"Pune, India\",\n  \"phoneno\": 7896541230,\n  \"roleId\": 2\n}"
+        },
+        "url": { "raw": "http://localhost:8081/users", "protocol": "http", "host": ["localhost"], "port": "8081", "path": ["users"] }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"kshitij\",\n  \"password\": \"kshitij123\"\n}"
+        },
+        "url": { "raw": "http://localhost:8081/users/login", "protocol": "http", "host": ["localhost"], "port": "8081", "path": ["users", "login"] }
+      }
+    },
     {
       "name": "Get All Users",
       "request": {
         "method": "GET",
         "header": [],
-        "url": {
-          "raw": "http://localhost:8080/user",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "8080",
-          "path": ["user"]
-        }
+        "url": { "raw": "http://localhost:8081/users", "protocol": "http", "host": ["localhost"], "port": "8081", "path": ["users"] }
       }
     },
     {
-      "name": "Get User By ID",
+      "name": "Get User by ID",
       "request": {
         "method": "GET",
         "header": [],
-        "url": {
-          "raw": "http://localhost:8080/user/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "8080",
-          "path": ["user", "1"]
-        }
-      }
-    },
-    {
-      "name": "Create User",
-      "request": {
-        "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"username\": \"soham3\",\n  \"email\": \"soham3@example.com\",\n  \"password\": \"soham123\",\n  \"name\": \"Soham Tanavade\",\n  \"address\": \"Pune, India\",\n  \"phoneno\": 9876543212,\n  \"enabled\": true,\n  \"role\": { \"rid\": 1 }\n}"
-        },
-        "url": {
-          "raw": "http://localhost:8080/user",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "8080",
-          "path": ["user"]
-        }
+        "url": { "raw": "http://localhost:8081/users/1", "protocol": "http", "host": ["localhost"], "port": "8081", "path": ["users", "1"] }
       }
     },
     {
       "name": "Update User",
       "request": {
         "method": "PUT",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"username\": \"soham_updated\",\n  \"email\": \"soham_updated@example.com\",\n  \"password\": \"newpass\",\n  \"name\": \"Soham Tanavade\",\n  \"address\": \"Mumbai, India\",\n  \"phoneno\": 9876543219,\n  \"enabled\": true,\n  \"role\": { \"rid\": 1 }\n}"
+          "raw": "{\n  \"username\": \"kshitij\",\n  \"email\": \"ksh_updated@example.com\",\n  \"password\": \"newpassword123\",\n  \"name\": \"Kshitij More\",\n  \"address\": \"Pune, India\",\n  \"phoneno\": 7896541230,\n  \"roleId\": 2\n}"
         },
-        "url": {
-          "raw": "http://localhost:8080/user/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "8080",
-          "path": ["user", "1"]
-        }
+        "url": { "raw": "http://localhost:8081/users/1", "protocol": "http", "host": ["localhost"], "port": "8081", "path": ["users", "1"] }
       }
     },
     {
@@ -75,91 +68,7 @@
       "request": {
         "method": "DELETE",
         "header": [],
-        "url": {
-          "raw": "http://localhost:8080/user/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "8080",
-          "path": ["user", "1"]
-        }
-      }
-    },
-    {
-      "name": "Get All Roles",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:8080/role",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "8080",
-          "path": ["role"]
-        }
-      }
-    },
-    {
-      "name": "Get Role By ID",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:8080/role/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "8080",
-          "path": ["role", "1"]
-        }
-      }
-    },
-    {
-      "name": "Create Role",
-      "request": {
-        "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"rname\": \"ADMIN\"\n}"
-        },
-        "url": {
-          "raw": "http://localhost:8080/role",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "8080",
-          "path": ["role"]
-        }
-      }
-    },
-    {
-      "name": "Update Role",
-      "request": {
-        "method": "PUT",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"rname\": \"USER\"\n}"
-        },
-        "url": {
-          "raw": "http://localhost:8080/role/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "8080",
-          "path": ["role", "1"]
-        }
-      }
-    },
-    {
-      "name": "Delete Role",
-      "request": {
-        "method": "DELETE",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:8080/role/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "8080",
-          "path": ["role", "1"]
-        }
+        "url": { "raw": "http://localhost:8081/users/1", "protocol": "http", "host": ["localhost"], "port": "8081", "path": ["users", "1"] }
       }
     }
   ]

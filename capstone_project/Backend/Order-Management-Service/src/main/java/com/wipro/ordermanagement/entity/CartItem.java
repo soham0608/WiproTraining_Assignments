@@ -14,10 +14,10 @@ public class CartItem {
     private Integer cart_id;
 
     @Column(name = "user_id", nullable = false)
-    private Integer user_id;
+    private Integer userId;
 
     @Column(name = "product_id", nullable = false)
-    private Integer product_id;
+    private Integer productId;
 
     @Column(nullable = false)
     private Integer quantity;
@@ -37,19 +37,19 @@ public class CartItem {
 	}
 
 	public Integer getUser_id() {
-		return user_id;
+		return userId;
 	}
 
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
+	public void setUser_id(Integer userId) {
+		this.userId = userId;
 	}
 
 	public Integer getProduct_id() {
-		return product_id;
+		return productId;
 	}
 
-	public void setProduct_id(Integer product_id) {
-		this.product_id = product_id;
+	public void setProduct_id(Integer productId) {
+		this.productId = productId;
 	}
 
 	public Integer getQuantity() {
@@ -76,12 +76,12 @@ public class CartItem {
 		this.product_name = product_name;
 	}
 
-	public CartItem(Integer cart_id, Integer user_id, Integer product_id, Integer quantity, BigDecimal price,
+	public CartItem(Integer cart_id, Integer userId, Integer productId, Integer quantity, BigDecimal price,
 			String product_name) {
 		super();
 		this.cart_id = cart_id;
-		this.user_id = user_id;
-		this.product_id = product_id;
+		this.userId = userId;
+		this.productId = productId;
 		this.quantity = quantity;
 		this.price = price;
 		this.product_name = product_name;

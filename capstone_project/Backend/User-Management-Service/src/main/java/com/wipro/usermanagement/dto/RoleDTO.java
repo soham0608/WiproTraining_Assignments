@@ -1,8 +1,5 @@
 package com.wipro.usermanagement.dto;
 
-import lombok.Data;
-
-@Data
 public class RoleDTO {
 	
     private Integer rid;

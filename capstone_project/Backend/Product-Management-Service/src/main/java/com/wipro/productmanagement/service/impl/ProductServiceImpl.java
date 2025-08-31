@@ -4,114 +4,111 @@ import com.wipro.productmanagement.dto.ProductDTO;
 import com.wipro.productmanagement.entity.Product;
 import com.wipro.productmanagement.repository.ProductRepository;
 import com.wipro.productmanagement.service.ProductService;
-
-import jakarta.ws.rs.NotFoundException;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
 public class ProductServiceImpl implements ProductService {
 
-    private final ProductRepository repo;
+    @Autowired
+    private ProductRepository productRepository;
 
-    public ProductServiceImpl(ProductRepository repo) {
-        this.repo = repo;
+    // ---------- Utility Mapping Methods ----------
+    private ProductDTO mapToDTO(Product product) {
+        return new ProductDTO(
+                product.getPid(),
+                product.getProduct_name(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getQuantity()
+        );
+    }
+
+    private Product mapToEntity(ProductDTO dto) {
+        return new Product(
+                dto.getPid(),
+                dto.getProductName(),
+                dto.getDescription(),
+                dto.getPrice(),
+                dto.getQuantity()
+        );
+    }
+
+    // ---------- CRUD ----------
+    @Override
+    public ProductDTO createProduct(ProductDTO productDTO) {
+        Product product = mapToEntity(productDTO);
+        return mapToDTO(productRepository.save(product));
     }
 
     @Override
-    public ProductDTO create(ProductDTO dto) {
-        Product p = toEntity(dto);
-        p.setPid(null); 
-        Product saved = repo.save(p);
-        return toDTO(saved);
+    public ProductDTO getProductById(Integer id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
+        return mapToDTO(product);
     }
 
     @Override
-    public ProductDTO update(Integer id, ProductDTO dto) {
-        Product existing = repo.findById(id)
-                .orElseThrow(() -> new NotFoundException("Product not found with id: " + id));
-
-        existing.setProduct_name(dto.getProductName());
-        existing.setDescription(dto.getDescription());
-        existing.setPrice(dto.getPrice());
-        existing.setQuantity(dto.getQuantity());
-
-        Product saved = repo.save(existing);
-        return toDTO(saved);
+    public List<ProductDTO> getAllProducts() {
+        return productRepository.findAll()
+                .stream()
+                .map(this::mapToDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public void delete(Integer id) {
-        Product existing = repo.findById(id)
-                .orElseThrow(() -> new NotFoundException("Product not found with id: " + id));
-        repo.delete(existing);
+    public ProductDTO updateProduct(Integer id, ProductDTO productDTO) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
+
+        product.setProduct_name(productDTO.getProductName());
+        product.setDescription(productDTO.getDescription());
+        product.setPrice(productDTO.getPrice());
+        product.setQuantity(productDTO.getQuantity());
+
+        return mapToDTO(productRepository.save(product));
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public ProductDTO getById(Integer id) {
-        return repo.findById(id)
-                .map(this::toDTO)
-                .orElseThrow(() -> new NotFoundException("Product not found with id: " + id));
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<ProductDTO> getAll() {
-        return repo.findAll().stream().map(this::toDTO).collect(Collectors.toList());
-    }
-
-    // ------------------- New methods -------------------
-    @Override
-    public boolean checkAvailability(Integer productId, Integer quantity) {
-        Product product = repo.findById(productId)
-                .orElseThrow(() -> new NotFoundException("Product not found with id: " + productId));
-        return product.getQuantity() >= quantity;
-    }
-
-    @Override
-    public void reduceQuantity(Integer productId, Integer quantity) {
-        Product product = repo.findById(productId)
-                .orElseThrow(() -> new NotFoundException("Product not found with id: " + productId));
-
-        if (product.getQuantity() < quantity) {
-            throw new IllegalArgumentException("Insufficient quantity for product id: " + productId);
+    public void deleteProduct(Integer id) {
+        if (!productRepository.existsById(id)) {
+            throw new RuntimeException("Product not found with id: " + id);
         }
-        product.setQuantity(product.getQuantity() - quantity);
-        repo.save(product);
+        productRepository.deleteById(id);
     }
 
     @Override
-    public void increaseQuantity(Integer productId, Integer quantity) {
-        Product product = repo.findById(productId)
-                .orElseThrow(() -> new NotFoundException("Product not found with id: " + productId));
-        product.setQuantity(product.getQuantity() + quantity);
-        repo.save(product);
+    public void delete(Integer id) { // duplicate of deleteProduct
+        deleteProduct(id);
     }
 
-    // ------------------- Helper methods -------------------
-    private ProductDTO toDTO(Product p) {
-        ProductDTO dto = new ProductDTO();
-        dto.setPid(p.getPid());
-        dto.setProductName(p.getProduct_name());
-        dto.setDescription(p.getDescription());
-        dto.setPrice(p.getPrice());
-        dto.setQuantity(p.getQuantity());
-        return dto;
+    // ---------- Stock Management (used by OrderService) ----------
+    @Override
+    public boolean checkAvailability(Integer productId, int qty) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
+        return product.getQuantity() >= qty;
     }
 
-    private Product toEntity(ProductDTO dto) {
-        Product p = new Product();
-        p.setPid(dto.getPid());
-        p.setProduct_name(dto.getProductName());
-        p.setDescription(dto.getDescription());
-        p.setPrice(dto.getPrice());
-        p.setQuantity(dto.getQuantity());
-        return p;
+    @Override
+    public void reduceQuantity(Integer productId, int qty) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
+        if (product.getQuantity() < qty) {
+            throw new RuntimeException("Not enough stock for product id: " + productId);
+        }
+        product.setQuantity(product.getQuantity() - qty);
+        productRepository.save(product);
+    }
+
+    @Override
+    public void increaseQuantity(Integer productId, int qty) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
+        product.setQuantity(product.getQuantity() + qty);
+        productRepository.save(product);
     }
 }

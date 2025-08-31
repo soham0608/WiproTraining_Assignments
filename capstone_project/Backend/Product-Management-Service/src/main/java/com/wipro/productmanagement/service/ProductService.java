@@ -1,22 +1,25 @@
 package com.wipro.productmanagement.service;
 
 import com.wipro.productmanagement.dto.ProductDTO;
+
 import java.util.List;
 
 public interface ProductService {
-    
-    ProductDTO create(ProductDTO dto);
-    
-    ProductDTO update(Integer id, ProductDTO dto);
-    
-    void delete(Integer id);
-    
-    ProductDTO getById(Integer id);
-    
-    List<ProductDTO> getAll();
+    ProductDTO createProduct(ProductDTO productDTO);
 
-    // New methods
-    boolean checkAvailability(Integer productId, Integer quantity);
-    void reduceQuantity(Integer productId, Integer quantity);
-    void increaseQuantity(Integer productId, Integer quantity);
+    ProductDTO getProductById(Integer id);
+
+    List<ProductDTO> getAllProducts();
+
+    ProductDTO updateProduct(Integer id, ProductDTO productDTO);
+
+    void deleteProduct(Integer id);
+
+    boolean checkAvailability(Integer productId, int qty);
+
+    void reduceQuantity(Integer productId, int qty);
+
+    void increaseQuantity(Integer productId, int qty);
+
+	void delete(Integer id);
 }

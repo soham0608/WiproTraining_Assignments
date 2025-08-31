@@ -15,13 +15,13 @@ public class Order {
     private Integer oid;
 
     @Column(name = "user_id", nullable = false)
-    private Integer user_id;
+    private Integer userId;
 
     @Enumerated(EnumType.STRING)
     private Status status = Status.CREATED;
 
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime created_at = LocalDateTime.now();
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
@@ -40,11 +40,11 @@ public class Order {
 	}
 
 	public Integer getUser_id() {
-		return user_id;
+		return userId;
 	}
 
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
+	public void setUser_id(Integer userId) {
+		this.userId = userId;
 	}
 
 	public Status getStatus() {
@@ -56,11 +56,11 @@ public class Order {
 	}
 
 	public LocalDateTime getCreated_at() {
-		return created_at;
+		return createdAt;
 	}
 
-	public void setCreated_at(LocalDateTime created_at) {
-		this.created_at = created_at;
+	public void setCreated_at(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	public List<OrderItem> getOrderItems() {
@@ -71,12 +71,12 @@ public class Order {
 		this.orderItems = orderItems;
 	}
 
-	public Order(Integer oid, Integer user_id, Status status, LocalDateTime created_at, List<OrderItem> orderItems) {
+	public Order(Integer oid, Integer userId, Status status, LocalDateTime createdAt, List<OrderItem> orderItems) {
 		super();
 		this.oid = oid;
-		this.user_id = user_id;
+		this.userId = userId;
 		this.status = status;
-		this.created_at = created_at;
+		this.createdAt = createdAt;
 		this.orderItems = orderItems;
 	}
 

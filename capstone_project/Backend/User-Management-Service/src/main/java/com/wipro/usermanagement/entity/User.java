@@ -1,5 +1,7 @@
 package com.wipro.usermanagement.entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -114,29 +116,9 @@ public class User {
 		this.role = role;
 	}
 
-	public User(int uid, String username, String email, String password, String name, String address,
-			long phoneno, boolean enabled, Role role) {
-		super();
-		this.uid = uid;
-		this.username = username;
-		this.email = email;
-		this.password = password;
-		this.name = name;
-		this.address = address;
-		this.phoneno = phoneno;
-		this.enabled = enabled;
-		this.role = role;
-	}
-
+	@JsonCreator
 	public User() {
-		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public String toString() {
-		return "User [uid=" + uid + ", username=" + username + ", email=" + email + ", password=" + password
-				+ ", name=" + name + ", address=" + address + ", phoneno=" + phoneno + ", enabled=" + enabled
-				+ ", role=" + role + "]";
-	}
 }
