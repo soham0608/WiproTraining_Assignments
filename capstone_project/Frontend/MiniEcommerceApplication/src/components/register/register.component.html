@@ -1,0 +1,125 @@
+<div
+  class="d-flex align-items-center justify-content-center min-vh-100 bg-light"
+>
+  <div
+    class="card shadow-lg border-0 rounded-4 p-4"
+    style="max-width: 450px; width: 100%"
+  >
+    <h2 class="form-title">Create Account</h2>
+    <p class="text-muted mb-4">Fill in your details to get started</p>
+
+    <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+      <!-- First & Last Name -->
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="firstName" class="form-label">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            class="form-control"
+            [(ngModel)]="user.firstName"
+            name="firstName"
+            required
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            class="form-control"
+            [(ngModel)]="user.lastName"
+            name="lastName"
+            required
+          />
+        </div>
+      </div>
+
+      <!-- User ID -->
+      <div class="mb-3">
+        <label for="userId" class="form-label">User ID</label>
+        <input
+          type="text"
+          id="userId"
+          class="form-control"
+          [(ngModel)]="user.userId"
+          name="userId"
+          required
+        />
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="emailId" class="form-label">Email Address</label>
+        <input
+          type="email"
+          id="emailId"
+          class="form-control"
+          [(ngModel)]="user.emailId"
+          name="emailId"
+          required
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label for="passWord" class="form-label">Password</label>
+        <input
+          type="password"
+          id="passWord"
+          class="form-control"
+          [(ngModel)]="user.passWord"
+          name="passWord"
+          required
+          minlength="6"
+        />
+      </div>
+
+      <!-- Address (Optional) -->
+      <div class="mb-3">
+        <label for="address" class="form-label">Address (Optional)</label>
+        <input
+          type="text"
+          id="address"
+          class="form-control"
+          [(ngModel)]="user.address"
+          name="address"
+        />
+      </div>
+
+      <!-- Phone (Optional) -->
+      <div class="mb-4">
+        <label for="phone" class="form-label">Phone Number (Optional)</label>
+        <input
+          type="tel"
+          id="phone"
+          class="form-control"
+          [(ngModel)]="user.phone"
+          name="phone"
+        />
+      </div>
+
+      <!-- Button -->
+      <button type="submit" class="btn btn-primary w-100">
+        Create Account
+      </button>
+
+      <p class="text-center mt-3">
+        Already have an account?
+        <a
+          [routerLink]="['/login']"
+          class="fw-semibold text-decoration-none text-primary"
+        >
+          Sign In
+        </a>
+      </p>
+    </form>
+
+    <p class="text-center small text-muted mt-4">
+      By creating an account, you agree to our
+      <a href="#" class="text-decoration-none text-primary">Terms of Service</a>
+      and
+      <a href="#" class="text-decoration-none text-primary">Privacy Policy</a>
+    </p>
+  </div>
+</div>

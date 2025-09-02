@@ -1,0 +1,59 @@
+/* Gradient background for search */
+.search-section {
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+}
+
+/* Rounded & modern search bar */
+.search-bar select,
+.search-bar input {
+  border-radius: 30px !important;
+  background: #f4f6f8;
+  border: none;
+}
+
+.search-bar button {
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.search-bar button:hover {
+  transform: translateY(-2px);
+  background: #c82333; /* darker red */
+}
+
+/* Product card customizations */
+.product-card {
+  border-radius: 15px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product-image {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.product-card h5 {
+  font-weight: 600;
+  color: #333;
+}
+
+.product-card .price {
+  font-size: 1.1rem;
+}
+
+.add-btn {
+  border-radius: 30px;
+  font-weight: 500;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  border: none;
+}
+
+.add-btn:hover {
+  background: linear-gradient(135deg, #5b0eb0, #1d5bd8);
+}

@@ -1,0 +1,143 @@
+/* Full page background */
+.profile-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+/* Header */
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 12px;
+}
+
+.profile-header h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.back-btn {
+  background: transparent;
+  color: #555;
+  border: 2px solid #ccc;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+.back-btn:hover {
+  border-color: #007bff;
+  color: #007bff;
+}
+
+/* Status messages */
+.message {
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: #eafaf1;
+  color: #1b5e20;
+  border: 1px solid #c3e6cb;
+}
+.message.error {
+  background: #fdecea;
+  color: #c0392b;
+  border: 1px solid #f5c6cb;
+}
+
+/* Form layout */
+.profile-form {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 18px 20px;
+  align-items: center;
+}
+
+/* Labels */
+.form-group label {
+  font-weight: 600;
+  color: #34495e;
+}
+
+/* Inputs & textarea */
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 8px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  background: transparent;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-bottom-color: #007bff;
+  outline: none;
+}
+.form-group input:disabled,
+.form-group textarea:disabled {
+  background: transparent;
+  border-bottom: 2px dashed #ccc;
+  color: #777;
+}
+
+/* Actions */
+.form-actions {
+  grid-column: span 2;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.edit-btn,
+.save-btn,
+.cancel-btn {
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+
+/* Different button styles */
+.edit-btn {
+  background: #007bff;
+  color: #fff;
+}
+.edit-btn:hover {
+  background: #0062cc;
+}
+
+.save-btn {
+  background: #fff;
+  color: #28a745;
+  border-color: #28a745;
+}
+.save-btn:hover {
+  background: #28a745;
+  color: #fff;
+}
+
+.cancel-btn {
+  background: #fff;
+  color: #dc3545;
+  border-color: #dc3545;
+}
+.cancel-btn:hover {
+  background: #dc3545;
+  color: #fff;
+}

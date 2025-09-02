@@ -1,0 +1,33 @@
+<!-- checkout.component.html -->
+<app-header></app-header>
+<div class="checkout-container">
+  <h2>Checkout</h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div class="checkout-summary">
+    <h3>Order Summary</h3>
+    <p>Please review your order before proceeding.</p>
+    <p>Click "Place Order" to confirm your purchase.</p>
+  </div>
+
+  <div *ngIf="currentOrder" class="order-status-box">
+    <h3>Order #{{ currentOrder.orderId }}</h3>
+    <p>Status: {{ currentOrder.orderStatus }}</p>
+    <p>Total: {{ currentOrder.totalAmount | currency : "INR" }}</p>
+  </div>
+
+  <div class="checkout-actions">
+    <button
+      (click)="placeOrder()"
+      [disabled]="isLoading"
+      class="btn btn-primary"
+    >
+      {{ isLoading ? "Placing Order..." : "Place Order" }}
+    </button>
+
+    <button (click)="cancelCheckout()" class="btn btn-secondary">Cancel</button>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="container my-4">
+  <!-- Header -->
+  <div
+    class="admin-header mb-4 d-flex justify-content-between align-items-center"
+  >
+    <h2 class="fw-bold">🛠️ Admin – Manage Products</h2>
+    <a
+      href="#"
+      class="btn btn-danger rounded-pill shadow-sm"
+      (click)="logout(); $event.preventDefault()"
+    >
+      🚪 Logout
+    </a>
+  </div>
+
+  <!-- Add Product Button -->
+  <div class="mb-3">
+    <button (click)="goToAdd()" class="btn btn-primary rounded-pill shadow-sm">
+      + Add Product
+    </button>
+  </div>
+
+  <!-- Products Table -->
+  <div class="card shadow-sm">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Available</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products">
+              <td class="fw-semibold">{{ product.prodName }}</td>
+              <td class="text-muted small">{{ product.prodDesc }}</td>
+              <td>
+                <span class="badge bg-info text-dark">{{
+                  product.prodCat
+                }}</span>
+              </td>
+              <td class="fw-bold text-success">
+                {{ product.price | currency : "INR" }}
+              </td>
+              <td>{{ product.availableQty }}</td>
+              <td class="text-center">
+                <button
+                  (click)="goToEdit(product.id)"
+                  class="btn btn-sm btn-warning me-2 rounded-pill"
+                >
+                  ✏️ Edit
+                </button>
+                <button
+                  (click)="deleteProduct(product.id)"
+                  class="btn btn-sm btn-danger rounded-pill"
+                >
+                  🗑️ Delete
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="products.length === 0">
+              <td colspan="6" class="text-center text-muted py-4">
+                No products available.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+/* Title */
+.form-title {
+  text-align: center;
+  color: #0d6efd;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+/* Form container */
+.product-form {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Inputs (override Bootstrap) */
+.form-control {
+  border-radius: 8px;
+  transition: 0.2s ease-in-out;
+}
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
+}
+
+/* Actions */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Buttons hover effect */
+.btn {
+  transition: all 0.2s ease-in-out;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}

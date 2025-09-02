@@ -1,0 +1,40 @@
+.cart-container h2 {
+  color: #333;
+}
+
+.product-image {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-item {
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cart-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.item-details h5 {
+  font-weight: 600;
+  color: #222;
+}
+
+.quantity-controls button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.item-total {
+  font-size: 1rem;
+}
+
+.cart-summary {
+  border-radius: 12px;
+  background: #f9fafb;
+}

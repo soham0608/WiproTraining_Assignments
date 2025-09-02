@@ -1,0 +1,83 @@
+<app-header></app-header>
+
+<div class="profile-container">
+  <div class="profile-header">
+    <h2>User Profile</h2>
+    <button class="back-btn" (click)="goBack()">← Back to Products</button>
+  </div>
+
+  <!-- Status Message -->
+  <div
+    *ngIf="message"
+    class="message"
+    [ngClass]="{
+      error: message.includes('Failed') || message.includes('match')
+    }"
+  >
+    {{ message }}
+  </div>
+
+  <div class="profile-form">
+    <div class="form-group">
+      <label>First Name:</label>
+      <input [(ngModel)]="user.firstName" [disabled]="!isEditing" />
+    </div>
+
+    <div class="form-group">
+      <label>Last Name:</label>
+      <input [(ngModel)]="user.lastName" [disabled]="!isEditing" />
+    </div>
+
+    <div class="form-group">
+      <label>Username:</label>
+      <input [(ngModel)]="user.userId" [disabled]="!isEditing" />
+    </div>
+
+    <div class="form-group">
+      <label>Email:</label>
+      <input [(ngModel)]="user.emailId" [disabled]="!isEditing" type="email" />
+    </div>
+
+    <div class="form-group">
+      <label>Address:</label>
+      <textarea
+        [(ngModel)]="user.address"
+        [disabled]="!isEditing"
+        rows="3"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Phone:</label>
+      <input [(ngModel)]="user.phone" [disabled]="!isEditing" type="tel" />
+    </div>
+
+    <!-- Show only when editing -->
+    <div *ngIf="isEditing">
+      <div class="form-group">
+        <label>New Password:</label>
+        <input
+          [(ngModel)]="user.password"
+          type="password"
+          placeholder="Leave blank to keep current"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Confirm Password:</label>
+        <input [(ngModel)]="user.confirmPassword" type="password" />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button *ngIf="!isEditing" class="edit-btn" (click)="toggleEdit()">
+        Edit Profile
+      </button>
+
+      <div *ngIf="isEditing" class="d-flex gap-2">
+        <button class="save-btn" (click)="updateProfile()">Save Changes</button>
+        <button class="cancel-btn" (click)="toggleEdit()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

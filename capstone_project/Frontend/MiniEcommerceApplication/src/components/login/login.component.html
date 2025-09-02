@@ -1,0 +1,62 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2 class="title">Welcome To E-Store</h2>
+    <p class="subtitle">Sign in</p>
+
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+      <!-- User ID -->
+      <div class="form-group">
+        <label for="userId">Username</label>
+        <input
+          type="text"
+          id="userId"
+          class="form-control"
+          placeholder="Enter your User ID"
+          [(ngModel)]="login.userId"
+          name="userId"
+          required
+          #userId="ngModel"
+        />
+        <div *ngIf="userId.invalid && userId.touched" class="validation-error">
+          username is required
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          placeholder="Enter your Password"
+          [(ngModel)]="login.passWord"
+          name="passWord"
+          required
+          #password="ngModel"
+        />
+        <div
+          *ngIf="password.invalid && password.touched"
+          class="validation-error"
+        >
+          Password is required
+        </div>
+      </div>
+
+      <!-- Button -->
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="loginForm.invalid || isLoading"
+        [class.btn-loading]="isLoading"
+      >
+        {{ isLoading ? "Signing In..." : "Sign In" }}
+      </button>
+
+      <!-- Register link -->
+      <p class="register-text">
+        New User? <a [routerLink]="['/register']">Create an Account</a>
+      </p>
+    </form>
+  </div>
+</div>

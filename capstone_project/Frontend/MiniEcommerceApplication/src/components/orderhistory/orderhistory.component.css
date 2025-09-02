@@ -1,0 +1,35 @@
+.order-history-container h2 {
+  color: #333;
+}
+
+.orders-table td,
+.orders-table th {
+  vertical-align: middle;
+}
+
+/* Hover effect on table rows */
+.orders-table tbody tr:hover {
+  background-color: #afbcd6;
+}
+
+/* Custom card */
+.card {
+  border-radius: 12px;
+}
+
+/* Override Bootstrap badge spacing */
+.badge {
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #3bcf30;
+}
+
+/* Button enhancements */
+.btn {
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}

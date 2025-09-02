@@ -1,0 +1,31 @@
+<div class="app-header">
+  <div class="logo">
+    <span class="logo-icon">🛍️</span>
+    <h1>E-Store</h1>
+  </div>
+
+  <div class="nav-actions">
+    <button class="cart-btn" (click)="goToCart()">
+      <span class="cart-icon">🛒</span> Cart
+    </button>
+
+    <div class="profile-menu">
+      <button class="profile-btn">Profile ▾</button>
+      <ul class="menu">
+        <li>
+          <a href="#" (click)="goToProfile(); $event.preventDefault()"
+            >Profile</a
+          >
+        </li>
+        <li>
+          <a href="#" (click)="goToOrders(); $event.preventDefault()"
+            >My Orders</a
+          >
+        </li>
+        <li>
+          <a href="#" (click)="logout(); $event.preventDefault()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

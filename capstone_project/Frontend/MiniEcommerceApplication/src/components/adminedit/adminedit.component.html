@@ -1,0 +1,145 @@
+<div class="container my-4">
+  <h3 class="form-title">✏️ Edit Product</h3>
+
+  <form
+    *ngIf="editingProduct"
+    (ngSubmit)="updateProduct()"
+    class="product-form"
+  >
+    <div class="row g-3">
+      <!-- Name & Description -->
+      <div class="col-md-6">
+        <label class="form-label" for="prodName">Product Name</label>
+        <input
+          id="prodName"
+          class="form-control"
+          [(ngModel)]="editingProduct.prodName"
+          name="prodName"
+          placeholder="Enter product name"
+        />
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label" for="prodDesc">Description</label>
+        <input
+          id="prodDesc"
+          class="form-control"
+          [(ngModel)]="editingProduct.prodDesc"
+          name="prodDesc"
+          placeholder="Enter description"
+        />
+      </div>
+
+      <!-- Category & Make -->
+      <div class="col-md-6">
+        <label class="form-label" for="prodCat">Category</label>
+        <input
+          id="prodCat"
+          class="form-control"
+          [(ngModel)]="editingProduct.prodCat"
+          name="prodCat"
+          placeholder="Enter category"
+        />
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label" for="make">Make</label>
+        <input
+          id="make"
+          class="form-control"
+          [(ngModel)]="editingProduct.make"
+          name="make"
+          placeholder="Enter make"
+        />
+      </div>
+
+      <!-- Qty & Price -->
+      <div class="col-md-6">
+        <label class="form-label" for="availableQty">Available Qty</label>
+        <input
+          id="availableQty"
+          type="number"
+          class="form-control"
+          [(ngModel)]="editingProduct.availableQty"
+          name="availableQty"
+          placeholder="Enter available quantity"
+        />
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label" for="price">Price</label>
+        <input
+          id="price"
+          type="number"
+          class="form-control"
+          [(ngModel)]="editingProduct.price"
+          name="price"
+          placeholder="Enter price"
+        />
+      </div>
+
+      <!-- UOM & Rating -->
+      <div class="col-md-6">
+        <label class="form-label" for="uom">Unit of Measure</label>
+        <input
+          id="uom"
+          class="form-control"
+          [(ngModel)]="editingProduct.uom"
+          name="uom"
+          placeholder="e.g. pcs, kg"
+        />
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label" for="prodRating">Rating</label>
+        <input
+          id="prodRating"
+          type="number"
+          step="0.1"
+          class="form-control"
+          [(ngModel)]="editingProduct.prodRating"
+          name="prodRating"
+          placeholder="Enter rating (0-5)"
+        />
+      </div>
+
+      <!-- Image URL -->
+      <div class="col-md-6">
+        <label class="form-label" for="imageURL">Image URL</label>
+        <input
+          id="imageURL"
+          class="form-control"
+          [(ngModel)]="editingProduct.imageURL"
+          name="imageURL"
+          placeholder="Paste image URL"
+        />
+      </div>
+
+      <!-- Manufacture Date -->
+      <div class="col-md-6">
+        <label class="form-label" for="dateOfManufactureName"
+          >Date of Manufacture</label
+        >
+        <input
+          id="dateOfManufactureName"
+          type="date"
+          class="form-control"
+          [(ngModel)]="editingProduct.dateOfManufactureName"
+          name="dateOfManufactureName"
+        />
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="form-actions mt-4">
+      <button type="submit" class="btn btn-primary px-4">💾 Update</button>
+      <button
+        type="button"
+        (click)="cancelEdit()"
+        class="btn btn-secondary px-4"
+      >
+        ✖ Cancel
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,108 @@
+/* ------------------------
+   Global Reset & Base
+------------------------ */
+body {
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  color: #212529;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: #0d6efd;
+  margin-bottom: 1rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+}
+
+/* ------------------------
+   Form Container
+------------------------ */
+.form-title {
+  text-align: center;
+  color: #0d6efd;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.product-form, 
+.form-container {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 0 auto 2rem auto;
+}
+
+/* ------------------------
+   Inputs
+------------------------ */
+.form-control {
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
+}
+
+/* ------------------------
+   Form Layout Helpers
+------------------------ */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-actions, 
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* ------------------------
+   Buttons
+------------------------ */
+.btn {
+  border-radius: 8px;
+  padding: 0.65rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0b5ed7, #0a58ca);
+}
+
+.btn-secondary {
+  background: #e9ecef;
+  color: #495057;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background: #dee2e6;
+}
