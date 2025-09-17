@@ -22,6 +22,11 @@ public class WebSecurityConfig {
             	        auth -> auth
             	        .requestMatchers("/user/login").permitAll()
                         .requestMatchers("/products/**").permitAll()
+                        .requestMatchers(
+                                "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/v3/api-docs/**"
+                            ).permitAll()
                        .anyRequest().authenticated()
             ) 
            

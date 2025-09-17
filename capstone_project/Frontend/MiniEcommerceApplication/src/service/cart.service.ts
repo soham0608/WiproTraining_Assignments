@@ -72,4 +72,8 @@ export class CartService {
       { headers }
     );
   }
+
+  clearCart(userId: number) {
+    return this.http.delete(`${BASE_URL}/cart/${userId}/clear`);
+ }
 }

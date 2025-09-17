@@ -58,4 +58,12 @@ public class CartController {
         cartService.removeProductFromCart(userId, productId);
         return ResponseEntity.ok().build();
     }
+    
+    @Operation(summary = "Clear user's cart")
+    @ApiResponse(responseCode = "200", description = "Cart cleared successfully")
+    @DeleteMapping("/{userId}/clear")
+    public ResponseEntity<Void> clearCart(@PathVariable Integer userId) {
+        cartService.clearCart(userId);
+        return ResponseEntity.ok().build();
+    }
 }

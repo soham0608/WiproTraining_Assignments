@@ -1,12 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { OrderService } from '../../service/order.service';
 import { CartService } from '../../service/cart.service';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { Order } from '../../interface/order';
-import { HttpClient } from '@angular/common/http';
-import { BASE_URL } from '../../util/appConstant';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -15,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css',
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
   userId: number = 0;
   isLoading: boolean = false;
   errorMessage: string = '';
@@ -25,8 +23,7 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private cartService: CartService,
-    private router: Router,
-    private http: HttpClient
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -71,6 +68,16 @@ export class CheckoutComponent implements OnInit {
                 next: (updatedOrder) => {
                   console.log('Order status updated in DB:', updatedOrder);
                   this.currentOrder = updatedOrder;
+
+                  // ✅ Clear cart once order is confirmed
+                  this.cartService.clearCart(this.userId).subscribe({
+                    next: () => {
+                      console.log('Cart cleared after order placed');
+                    },
+                    error: (error) => {
+                      console.error('Failed to clear cart:', error);
+                    },
+                  });
                 },
                 error: (error) => {
                   console.error('Failed to update order status:', error);
@@ -105,18 +112,13 @@ export class CheckoutComponent implements OnInit {
           if (this.currentOrder.orderStatus === 'CONFIRMED') {
             alert('Order placed successfully!');
             this.router.navigate(['/orders'], {
-              state: {
-                message: 'Order placed successfully!',
-                orderId: orderId,
-              },
+              state: { message: 'Order placed successfully!', orderId: orderId },
             });
           }
         }
       }
     }, 2000);
   }
-
-  
 
   cancelCheckout(): void {
     if (this.pollingInterval) {

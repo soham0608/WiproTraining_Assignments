@@ -42,6 +42,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
     
+    @Override
     public Order createOrder(int userId) {
         Cart cart = cartService.getCartByUserId(userId);
 
@@ -56,12 +57,39 @@ public class OrderServiceImpl implements OrderService {
         order.setOrderStatus("PENDING");
         order.setOrderDate(LocalDateTime.now());
 
+        // ✅ Step 1: Deduct stock for each product
+        for (Map.Entry<Integer, Integer> entry : cart.getProdDetails().entrySet()) {
+            int productId = entry.getKey();
+            int quantity = entry.getValue();
+
+            ResponseEntity<Product> response = restTemplate.getForEntity(
+                    PRODUCT_SERVICE_URL + "/products/" + productId, Product.class);
+
+            if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
+                Product product = response.getBody();
+
+                if (product.getAvailableQty() < quantity) {
+                    throw new RuntimeException("Insufficient stock for product: " + productId);
+                }
+
+                product.setAvailableQty(product.getAvailableQty() - quantity);
+
+                // Update stock in ProductMS
+                restTemplate.put(PRODUCT_SERVICE_URL + "/products/" + productId, product);
+            } else {
+                throw new RuntimeException("Product not found in ProductMS: " + productId);
+            }
+        }
+
         Order savedOrder = orderRepository.save(order);
 
         kafkaTemplate.send(AppConstant.OUTGOING_TOPIC_NAME, savedOrder);
 
+        cartService.clearCartByUserId(userId);
+
         return savedOrder;
     }
+
     
     public Order cancelOrder(int orderId) {
         Order order = orderRepository.findById(orderId)
